@@ -6,6 +6,8 @@ import pydub  # Ensure you have pydub installed for audio conversion
 import librosa
 import soundfile as sf
 
+# -------------------------------- STYLING -------------------------------------
+
 # Custom CSS to change the text and background color globally
 def apply_custom_styles():
     st.markdown("""
@@ -62,7 +64,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# -------------------------------------------------------------------------------
+# --------------------------------- API ----------------------------------------
 
 # API that posts the audio to our model
 post_api = "https://kmeansklang-364885724897.europe-west1.run.app/predict"  # Replace with your API endpoint

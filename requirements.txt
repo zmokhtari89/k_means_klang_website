@@ -1,5 +1,8 @@
 streamlit
 requests
+numpy
 pydub
-librosa
-soundfile
+
+# In order to upload non wav files, you will have to also run the following commands in your terminal
+# sudo apt update
+# sudo apt install ffmpeg
