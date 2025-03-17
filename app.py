@@ -62,8 +62,10 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# -------------------------------------------------------------------------------
+
 # API that posts the audio to our model
-post_api = "https://your-api.com/analyze-audio"  # Replace with your API endpoint
+post_api = "https://kmeansklang-364885724897.europe-west1.run.app/predict"  # Replace with your API endpoint
 
 
 # Website Header
@@ -78,30 +80,6 @@ st.markdown("""
 # Callback function - gives info when audio is changed
 def my_callback():
     st.write("Audio input has changed!")
-
-
-# Function to convert and send the audio to your API
-def convert_and_send_audio(audio_data):
-    # Check if the data is in bytes already (for recording)
-    if isinstance(audio_data, bytes):
-        audio_bytes = io.BytesIO(audio_data)
-    else:
-        # For file uploads, extract bytes using .getvalue()
-        audio_bytes = io.BytesIO(audio_data.getvalue())
-
-    # Use librosa to load audio from byte data (no need for ffmpeg)
-    try:
-        y, sr = librosa.load(audio_bytes, sr=None)  # sr=None to keep original sample rate
-    except Exception as e:
-        st.error(f"Error loading audio with librosa: {e}")
-        return
-
-    # Save the audio as a WAV file using soundfile
-    output_file = "converted_audio.wav"
-    sf.write(output_file, y, sr)
-
-    # Send to your API (you can send the file or the byte data)
-    send_audio_to_api(output_file)
 
 
 # Function to send the audio to the API
@@ -127,6 +105,28 @@ def send_audio_to_api(audio_file_path):
             else:
                 st.error(f"Failed to send audio. Status code: {response.status_code}")
 
+# Function to convert and send the audio to your API
+def convert_and_send_audio(audio_data):
+    # Check if the data is in bytes already (for recording)
+    if isinstance(audio_data, bytes):
+        audio_bytes = io.BytesIO(audio_data)
+    else:
+        # For file uploads, extract bytes using .getvalue()
+        audio_bytes = io.BytesIO(audio_data.getvalue())
+
+    # Use librosa to load audio from byte data (no need for ffmpeg)
+    try:
+        y, sr = librosa.load(audio_bytes, sr=None)  # sr=None to keep original sample rate
+    except Exception as e:
+        st.error(f"Error loading audio with librosa: {e}")
+        return
+
+    # Save the audio as a WAV file using soundfile
+    output_file = "converted_audio.wav"
+    sf.write(output_file, y, sr)
+
+    # Send to your API (you can send the file or the byte data)
+    send_audio_to_api(output_file)
 
 # Callback function to handle audio input change
 def process_audio():
