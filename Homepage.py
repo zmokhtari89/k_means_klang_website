@@ -74,7 +74,7 @@ post_api = "https://kmeansklang-364885724897.europe-west1.run.app/predict"
 
 # Website Header
 st.markdown("""
-    <h1 style="text-align: center; color: #ecd4cf;">K-means-Klang</h1>
+    <h1 style="text-align: center; color: #ecd4cf;">K-Means-Klang</h1>
     <h4 style="text-align: center; color: #ecd4cf;">
     Welcome to the K-means-Klang Project.
     Give us a song, we'll give you its cluster.
@@ -105,10 +105,10 @@ def send_audio_to_api(audio_file_path):
                 result = response.json()
                 prediction = result.get('predicted_cluster')
                 st.markdown(f'<h4 style="text-align: center;">Predicted Cluster: {result.get("predicted_cluster")}</h1>', unsafe_allow_html=True)
-                cluster_img_path = f"images/cluster_{prediction}.jpg"
+                cluster_img_path = f"images/cluster_{prediction}.png"
                 st.write(f'''
                     <div style="text-align: center;">
-                        <img src="data:image/jpg;base64,{load_image(cluster_img_path)}" style="max-width: 600px; width: 100%; height: auto; display: inline-block;">
+                        <img src="data:image/jpg;base64,{load_image(cluster_img_path)}" style="max-width: 500px; width: 100%; height: auto; display: inline-block;">
                     </div>
                 ''', unsafe_allow_html=True)
                 # st.write(f'''
@@ -208,3 +208,14 @@ if recording:
             st.error(f"Error processing audio: {e}")
     else:
         st.error("Error: Recorded audio is not in the expected format.")
+
+
+
+# cluster_img_path = f"images/cluster_4.png"
+# # "\\wsl.localhost\Ubuntu\home\kartseleni\code\kartseleni\k-means-klang-website\images\cluster_test.png"
+
+# st.write(f'''
+#     <div style="text-align: center;">
+#         <img src="data:image/jpg;base64,{load_image(cluster_img_path)}" style="max-width: 500px; width: 100%; height: auto; display: inline-block;">
+#     </div>
+# ''', unsafe_allow_html=True)
