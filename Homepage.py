@@ -7,8 +7,6 @@ import tempfile
 from pydub import AudioSegment
 import base64
 
-import streamlit as st
-
 # -------------------------------- STYLING -------------------------------------
 
 # Custom CSS to change the text and background color globally
