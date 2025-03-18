@@ -160,7 +160,8 @@ st.markdown('''<br>
 # Audio input with on_change callback
 recording = st.audio_input("Let me hear your voice:", key="recording", on_change=my_callback)
 
-# If audio has been recorded, we process it
+
+
 if recording:
     st.write("Recording complete. Sending audio to the API...")
 
@@ -168,7 +169,10 @@ if recording:
     if isinstance(recording, st.runtime.uploaded_file_manager.UploadedFile):
         # Get the raw bytes from the UploadedFile object
         recording_data = recording.getvalue()
-        # st.write("Recording is in bytes format.")
+
+        # Get the file type from the recording's MIME type or extension (if applicable)
+        file_type = recording.name.split(".")[-1]  # Extract the file extension (e.g., mp3, wav, flac)
+        # st.write(f"File Type: {file_type}")  # Display file type
 
         try:
             # Create a wave file-like object from the byte data
@@ -193,21 +197,9 @@ if recording:
                         wav_out.setframerate(framerate)
                         wav_out.writeframes(audio_samples.tobytes())
 
-                    # Send the temporary .wav file to the API
-                    send_audio_to_api(temp_wav.name)
-
+                    # Send the temporary .wav file to the API and pass file_type
+                    send_audio_to_api(temp_wav.name, file_type)
         except Exception as e:
             st.error(f"Error processing audio: {e}")
     else:
         st.error("Error: Recorded audio is not in the expected format.")
-
-
-
-# cluster_img_path = f"images/cluster_4.png"
-# # "\\wsl.localhost\Ubuntu\home\kartseleni\code\kartseleni\k-means-klang-website\images\cluster_test.png"
-
-# st.write(f'''
-#     <div style="text-align: center;">
-#         <img src="data:image/jpg;base64,{load_image(cluster_img_path)}" style="max-width: 500px; width: 100%; height: auto; display: inline-block;">
-#     </div>
-# ''', unsafe_allow_html=True)
