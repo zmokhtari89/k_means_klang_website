@@ -7,6 +7,8 @@ import tempfile
 from pydub import AudioSegment
 import base64
 
+import streamlit as st
+
 # -------------------------------- STYLING -------------------------------------
 
 # Custom CSS to change the text and background color globally
@@ -81,6 +83,11 @@ st.markdown("""
     </h4><br>
 """, unsafe_allow_html=True)
 
+def load_image(path):
+    with open(path, 'rb') as f:
+        data = f.read()
+    encoded = base64.b64encode(data).decode()
+    return encoded
 
 # Callback function - gives info when audio is changed
 def my_callback():
@@ -95,10 +102,17 @@ def send_audio_to_api(audio_file_path):
         response = requests.post(post_api, files=files)
 
         if response.status_code == 200:
-            st.success("Audio successfully sent for analysis!")
+            # st.success("Audio successfully sent for analysis!")
             try:
                 result = response.json()
-                st.write(f"Predicted Cluster: {result.get('predicted_cluster')}")
+                prediction = result.get('predicted_cluster')
+                st.markdown(f'<h4 style="text-align: center;">Predicted Cluster: {result.get("predicted_cluster")}</h1>', unsafe_allow_html=True)
+                cluster_img_path = f"images/cluster_{prediction}.jpg"
+                st.write(f'''
+                    <div style="text-align: center;">
+                        <img src="data:image/jpg;base64,{load_image(cluster_img_path)}" style="width: 400px; height: 400px; display: inline-block;">
+                    </div>
+                ''', unsafe_allow_html=True)
             except ValueError:
                 st.error("Error: Unable to parse response from the API.")
         else:
@@ -115,12 +129,12 @@ audio_file = st.file_uploader("Give me an audio file:",
 
 # If an audio file is uploaded
 if audio_file:
-    st.audio(audio_file.getvalue(), format="audio/wav")  # Ensure correct format for playback
-    st.write("File uploaded successfully!")
+    st.audio(audio_file.getvalue(), format="audio/wav")
+    # st.write("File uploaded successfully!")
 
     # Read file as bytes
     audio_file_bytes = audio_file.getvalue()
-    st.write(f"File size: {len(audio_file_bytes) / 1024:.2f} KB")
+    # st.write(f"File size: {len(audio_file_bytes) / 1024:.2f} KB")
 
     # Extract file type from extension (either mp3, flac, or wav)
     file_type = audio_file.name.split(".")[-1]
@@ -159,7 +173,7 @@ if recording:
     if isinstance(recording, st.runtime.uploaded_file_manager.UploadedFile):
         # Get the raw bytes from the UploadedFile object
         recording_data = recording.getvalue()
-        st.write("Recording is in bytes format.")
+        # st.write("Recording is in bytes format.")
 
         try:
             # Create a wave file-like object from the byte data
@@ -174,7 +188,7 @@ if recording:
                 audio_samples = np.frombuffer(audio_data, dtype=np.int16)
 
                 # Ensure we have valid audio samples (must be an array of integers)
-                st.write(f"Audio data length: {len(audio_samples)} samples")
+                # st.write(f"Audio data length: {len(audio_samples)} samples")
 
                 # Save the numpy array as a .wav file
                 with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as temp_wav:
