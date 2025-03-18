@@ -160,7 +160,8 @@ st.markdown('''<br>
 # Audio input with on_change callback
 recording = st.audio_input("Let me hear your voice:", key="recording", on_change=my_callback)
 
-# If audio has been recorded, we process it
+
+
 if recording:
     st.write("Recording complete. Sending audio to the API...")
 
@@ -168,7 +169,10 @@ if recording:
     if isinstance(recording, st.runtime.uploaded_file_manager.UploadedFile):
         # Get the raw bytes from the UploadedFile object
         recording_data = recording.getvalue()
-        # st.write("Recording is in bytes format.")
+
+        # Get the file type from the recording's MIME type or extension (if applicable)
+        file_type = recording.name.split(".")[-1]  # Extract the file extension (e.g., mp3, wav, flac)
+        # st.write(f"File Type: {file_type}")  # Display file type
 
         try:
             # Create a wave file-like object from the byte data
@@ -193,13 +197,56 @@ if recording:
                         wav_out.setframerate(framerate)
                         wav_out.writeframes(audio_samples.tobytes())
 
-                    # Send the temporary .wav file to the API
-                    send_audio_to_api(temp_wav.name)
-
+                    # Send the temporary .wav file to the API and pass file_type
+                    send_audio_to_api(temp_wav.name, file_type)
         except Exception as e:
             st.error(f"Error processing audio: {e}")
     else:
         st.error("Error: Recorded audio is not in the expected format.")
+
+
+
+
+# # If audio has been recorded, we process it
+# if recording:
+#     st.write("Recording complete. Sending audio to the API...")
+
+#     # Convert the UploadedFile to bytes
+#     if isinstance(recording, st.runtime.uploaded_file_manager.UploadedFile):
+#         # Get the raw bytes from the UploadedFile object
+#         recording_data = recording.getvalue()
+#         # st.write("Recording is in bytes format.")
+
+#         try:
+#             # Create a wave file-like object from the byte data
+#             wav_file = io.BytesIO(recording_data)
+#             with wave.open(wav_file, 'rb') as wav:
+#                 # Get properties of the audio file
+#                 framerate = wav.getframerate()
+#                 num_frames = wav.getnframes()
+#                 audio_data = wav.readframes(num_frames)
+
+#                 # Convert the audio byte data into numpy array
+#                 audio_samples = np.frombuffer(audio_data, dtype=np.int16)
+
+#                 # Ensure we have valid audio samples (must be an array of integers)
+#                 # st.write(f"Audio data length: {len(audio_samples)} samples")
+
+#                 # Save the numpy array as a .wav file
+#                 with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as temp_wav:
+#                     with wave.open(temp_wav, 'wb') as wav_out:
+#                         wav_out.setnchannels(1)  # Mono audio
+#                         wav_out.setsampwidth(2)  # 16-bit audio
+#                         wav_out.setframerate(framerate)
+#                         wav_out.writeframes(audio_samples.tobytes())
+
+#                     # Send the temporary .wav file to the API
+#                     send_audio_to_api(temp_wav.name)
+
+#         except Exception as e:
+#             st.error(f"Error processing audio: {e}")
+#     else:
+#         st.error("Error: Recorded audio is not in the expected format.")
 
 
 
