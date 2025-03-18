@@ -108,9 +108,14 @@ def send_audio_to_api(audio_file_path):
                 cluster_img_path = f"images/cluster_{prediction}.jpg"
                 st.write(f'''
                     <div style="text-align: center;">
-                        <img src="data:image/jpg;base64,{load_image(cluster_img_path)}" style="width: 400px; height: 400px; display: inline-block;">
+                        <img src="data:image/jpg;base64,{load_image(cluster_img_path)}" style="max-width: 600px; width: 100%; height: auto; display: inline-block;">
                     </div>
                 ''', unsafe_allow_html=True)
+                # st.write(f'''
+                #     <div style="text-align: center;">
+                #         <img src="data:image/jpg;base64,{load_image(cluster_img_path)}" style="width: 400px; height: 400px; display: inline-block;">
+                #     </div>
+                # ''', unsafe_allow_html=True)
             except ValueError:
                 st.error("Error: Unable to parse response from the API.")
         else:
