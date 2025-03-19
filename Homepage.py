@@ -138,7 +138,13 @@ def send_audio_to_api(audio_file_path, file_type):
                         </div>
                     </p>
                 ''', unsafe_allow_html=True)
-                st.markdown(f'''
+                cluster_img_path = f"images/cluster_{prediction}.png"
+                st.write(f'''
+                    <div style="text-align: center;">
+                        <img src="data:image/jpg;base64,{load_image(cluster_img_path)}" style="max-width: 500px; width: 100%; height: auto; display: inline-block;">
+                    </div>
+                ''', unsafe_allow_html=True)
+                st.markdown(f'''<br>
                     <p style="text-align: center; font-family: Arial, sans-serif; font-size: 18px; line-height: 1.2;">
                         The most dominant genres describing your song are: <br>
                         <div style="display: flex; justify-content: center; gap: 50px; padding-left: 5vw; padding-right: 5vw; margin-top: -10px;">
@@ -147,12 +153,6 @@ def send_audio_to_api(audio_file_path, file_type):
                             <span>{cluster_chars[prediction][2]}</span>
                         </div>
                     </p>
-                ''', unsafe_allow_html=True)
-                cluster_img_path = f"images/cluster_{prediction}.png"
-                st.write(f'''
-                    <div style="text-align: center;">
-                        <img src="data:image/jpg;base64,{load_image(cluster_img_path)}" style="max-width: 500px; width: 100%; height: auto; display: inline-block;">
-                    </div>
                 ''', unsafe_allow_html=True)
             except ValueError:
                 st.error("Error: Unable to parse response from the API.")
