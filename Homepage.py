@@ -9,8 +9,6 @@ import base64
 
 # -------------------------------- STYLING -------------------------------------
 
-#c27f71 - dusty pink
-
 # Custom CSS to change the text and background color globally
 def apply_custom_styles():
     st.markdown("""
