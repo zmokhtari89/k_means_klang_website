@@ -89,12 +89,12 @@ def load_image(path):
 
 animals = ['fiercy Falkon', 'groovy Dolphin', 'dreamy Panda', 'busy Squirrel', 'chill Coala', 'sophisticated Owl']
 description = [
-    ['fast', 'fast', 'fast'],
-    ['fascinating', 'slow', 'extraordinary'],
-    ['experimental', 'experimental', 'experimental'],
-    ['funky', 'funky', 'funky'],
-    ['tricky', 'tricky', 'tricky'],
-    ['happy', 'happy', 'happy']
+    ['intense', 'rebellious', 'bold'],
+    ['rhythmic', 'energetic', 'vibrant'],
+    ['subdued', 'soft', 'relaxing'],
+    ['upbeat', 'conventional', 'optimistic'],
+    ['smooth', 'comforting', 'easygoing'],
+    ['reflective', 'sophisticated', 'calming']
 ]
 
 cluster_chars = [
