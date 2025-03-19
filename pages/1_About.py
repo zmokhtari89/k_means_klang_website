@@ -101,7 +101,7 @@ def load_image(path):
     encoded = base64.b64encode(data).decode()
     return encoded
 
-about_us_img_path = f"images/about_us_image_2.jpg"
+about_us_img_path = f"images/about_us_image_2.png"
 
 st.write(f'''
     <div style="text-align: center;">
@@ -122,13 +122,36 @@ st.markdown('''<br>
             unsafe_allow_html=True)
 st.markdown('''<p style="text-align: justify; font-family: Arial, sans-serif; font-size: 18px; line-height: 1.2;"><b>Unsatisfied with the status-quo, we set off to look beyond the label!</b> 🔎 We wanted to see what features are important for describing how particular songs and sounds might make us feel.  
             <br><br>
-            <b>Under the hood:</b> Using Data Analytics techniques (Python, Librosa), we took music samples from the GTZAN Dataset(link), stripped it of the predefined genre labels, and broke the samples down into their musical building blocks. Then we used a K-means unsupervised learning algorithm to cluster those sounds based on the relationship between the distinctive features (eg. a sound timbre, harmony, sharpness, brightness, etc). We found that various sound attributes helped to explain how certain sounds clustered together. For example: brightness, is it noisy or focused, is the timbre textured and complex or clean 
+            <b>Under the hood:</b> Using Data Analytics techniques (Python, Librosa), we took music samples from the GTZAN Dataset, removed the predefined genre labels, and broke the samples down into their musical building blocks. Then we used a <b>K-Means</b> unsupervised learning algorithm to cluster those sounds based on the relationship between the distinctive features (eg. a sound timbre, harmony, sharpness, brightness, etc). We found that various sound attributes helped to explain how certain sounds clustered together. For example: brightness of a sound, is it noisy or focused, is the timbre textured and complex or simple and clean? 
             <br><br>
-            <b>The fun part</b>: Now we can upload audio files and discover more meaning behind the music. How is it related to the other sounds? What is the personality of the song and what are its characteristics? 
-            🛢️Check out our Github here(link) for more details 
+            <b>Now for the fun part</b>: We can upload any audio file and discover meaning and insights behind the music. What is the song's personality? What are its characteristics? How is it related to the other sounds and genres?  
             <br><br>
-            Give it a try!  Upload your favorite song (or voice sample! 😁) and have fun!
-            </p>''', unsafe_allow_html=True)
+            Give it a try!  Upload your favorite song (or voice sample!🎤) and have fun!
+            </p>
+            <br>
+            <br>''', unsafe_allow_html=True)
+
+
+#Section 3: About us
+our_team_path = f"images/our_team_image.png"
+
+st.write(f'''
+    <div style="text-align: center;">
+    <img src="data:image/jpg;base64,{load_image(our_team_path)}" style="max-width: 500px; width: 100%; height: auto; display: inline-block;">
+    </div>
+    ''', unsafe_allow_html=True)
+
+st.markdown('''<br>
+            <h4 style="text-align: center;">With Love and Vibes From the The K Means Klang Team🎶😍</h4>
+            ''',
+            unsafe_allow_html=True)      
+st.markdown('''<p style="text-align: Center; font-family: Arial, sans-serif; font-size: 18px; line-height: 1.2;">
+             <b>Zahra Moktari</b> <br><b>Luisa Freytag</b> <br><b>Eleni Kartsiouka</b> <br><b>Tai Ford</b>
+            <br><br>
+            <b>Le Wagon Berlin - Batch #1936</b>
+            </b>
+            </p>''', unsafe_allow_html=True)            
+
 
 
 # #Section 4: The future of music (Discovering the roots of music, )
