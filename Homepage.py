@@ -9,13 +9,15 @@ import base64
 
 # -------------------------------- STYLING -------------------------------------
 
+#c27f71 - dusty pink
+
 # Custom CSS to change the text and background color globally
 def apply_custom_styles():
     st.markdown("""
         <style>
         /* Change text color globally */
         * {
-            color: #ecd4cf !important;
+            color: #e38a78 !important;
         }
 
         /* Dark background for file uploader and audio uploader */
@@ -28,8 +30,8 @@ def apply_custom_styles():
         /* Style the buttons inside uploaders */
         div.stFileUploader button, div.stAudio button {
             background-color: #444 !important;
-            color: #ecd4cf !important;
-            border: 1px solid #ecd4cf !important;
+            color: #e38a78 !important;
+            border: 1px solid #e38a78 !important;
         }
         </style>
     """, unsafe_allow_html=True)
@@ -241,3 +243,31 @@ if recording:
             st.error(f"Error processing audio: {e}")
     else:
         st.error("Error: Recorded audio is not in the expected format.")
+
+
+st.markdown(f'''
+    <p style="text-align: center; font-family: Arial, sans-serif; font-size: 18px; line-height: 1.2;">
+        Your music taste tends to be: <br>
+        <div style="display: flex; justify-content: center; gap: 50px; padding-left: 5vw; padding-right: 5vw; margin-top: -10px;">
+            <span>{description[1][0]}</span>
+            <span>{description[1][1]}</span>
+            <span>{description[1][2]}</span>
+        </div>
+    </p>
+''', unsafe_allow_html=True)
+cluster_img_path = f"images/cluster_{1}.png"
+st.write(f'''
+    <div style="text-align: center;">
+        <img src="data:image/jpg;base64,{load_image(cluster_img_path)}" style="max-width: 500px; width: 100%; height: auto; display: inline-block;">
+    </div>
+''', unsafe_allow_html=True)
+st.markdown(f'''<br>
+    <p style="text-align: center; font-family: Arial, sans-serif; font-size: 18px; line-height: 1.2;">
+        The most dominant genres describing your song are: <br>
+        <div style="display: flex; justify-content: center; gap: 50px; padding-left: 5vw; padding-right: 5vw; margin-top: -10px;">
+            <span>{cluster_chars[1][0]}</span>
+            <span>{cluster_chars[1][1]}</span>
+            <span>{cluster_chars[1][2]}</span>
+        </div>
+    </p>
+''', unsafe_allow_html=True)
