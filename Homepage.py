@@ -87,7 +87,7 @@ def load_image(path):
     encoded = base64.b64encode(data).decode()
     return encoded
 
-animals = ['fiercy Falkon', 'groovy Dolphin', 'dreamy Panda', 'busy Squirrel', 'chill Coala', 'sophisticated Owl']
+animals = ['fierce Falkon', 'groovy Dolphin', 'dreamy Panda', 'jumpy Squirrel', 'chill Coala', 'sophisticated Owl']
 description = [
     ['intense', 'rebellious', 'bold'],
     ['rhythmic', 'energetic', 'vibrant'],
