@@ -15,7 +15,7 @@ def apply_custom_styles():
         <style>
         /* Change text color globally */
         * {
-            color: #ecd4cf !important;
+            color: #e38a78 !important;
         }
 
         /* Dark background for file uploader and audio uploader */
@@ -28,8 +28,8 @@ def apply_custom_styles():
         /* Style the buttons inside uploaders */
         div.stFileUploader button, div.stAudio button {
             background-color: #444 !important;
-            color: #ecd4cf !important;
-            border: 1px solid #ecd4cf !important;
+            color: #e38a78 !important;
+            border: 1px solid #e38a78 !important;
         }
         </style>
     """, unsafe_allow_html=True)
