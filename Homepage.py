@@ -77,7 +77,7 @@ st.markdown("""
     <h1 style="text-align: center; color: #ecd4cf;">K-Means-Klang</h1>
     <h4 style="text-align: center; color: #ecd4cf;">
     Welcome to the K-means-Klang Project.
-    Give us a song, we'll give you its cluster.
+    Give us your favorite song, we'll tell you who you are!
     </h4><br>
 """, unsafe_allow_html=True)
 
@@ -140,7 +140,7 @@ def send_audio_to_api(audio_file_path, file_type):
                 ''', unsafe_allow_html=True)
                 st.markdown(f'''
                     <p style="text-align: center; font-family: Arial, sans-serif; font-size: 18px; line-height: 1.2;">
-                        The cluster assigned to you is defined by: <br>
+                        The most dominant genres describing your song are: <br>
                         <div style="display: flex; justify-content: center; gap: 50px; padding-left: 5vw; padding-right: 5vw; margin-top: -10px;">
                             <span>{cluster_chars[prediction][0]}</span>
                             <span>{cluster_chars[prediction][1]}</span>
