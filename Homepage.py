@@ -87,9 +87,24 @@ def load_image(path):
     encoded = base64.b64encode(data).decode()
     return encoded
 
-# Callback function - gives info when audio is changed
-def my_callback():
-    st.write("Audio input has changed!")
+animals = ['fiercy Falkon', 'groovy Dolphin', 'dreamy Panda', 'busy Squirrel', 'chill Coala', 'sophisticated Owl']
+description = [
+    ['fast', 'fast', 'fast'],
+    ['fascinating', 'slow', 'extraordinary'],
+    ['experimental', 'experimental', 'experimental'],
+    ['funky', 'funky', 'funky'],
+    ['tricky', 'tricky', 'tricky'],
+    ['happy', 'happy', 'happy']
+]
+
+cluster_chars = [
+    ['Metal', 'Disco', 'Rock'],
+    ['Pop', 'Disco', 'Rock'],
+    ['Reggae', 'Blues', 'Country'],
+    ['Pop' ,'Hip Hop', 'Reggae'],
+    ['Reggae', 'Country', 'Rock'],
+    ['Classical', 'Jazz', 'Blues']
+]
 
 # # Function to send the audio to the API
 def send_audio_to_api(audio_file_path, file_type):
@@ -108,7 +123,31 @@ def send_audio_to_api(audio_file_path, file_type):
             try:
                 result = response.json()
                 prediction = result.get('predicted_cluster')
-                st.markdown(f'<h4 style="text-align: center;">Predicted Cluster: {result.get("predicted_cluster")}</h1>', unsafe_allow_html=True)
+                # st.markdown(f'<h4 style="text-align: center;">Predicted Cluster: {result.get("predicted_cluster")}</h4>', unsafe_allow_html=True)
+
+                st.markdown(f'<h4 style="text-align: center;">Hey there {animals[prediction]}!</h4>', unsafe_allow_html=True )
+                # st.markdown(f'<h5 style="text-align: center;">Your music taste tends to be <br>{description[prediction][0]} {description[prediction][1]} {description[prediction][2]}</h5>', unsafe_allow_html=True )
+                # st.markdown(f'<h5 style="text-align: center;">The cluster assigned to you is defined by <br>{cluster_chars[prediction][0]} {cluster_chars[prediction][1]} {cluster_chars[prediction][2]}</h5>', unsafe_allow_html=True )
+                st.markdown(f'''
+                    <p style="text-align: center; font-family: Arial, sans-serif; font-size: 18px; line-height: 1.2;">
+                        Your music taste tends to be: <br>
+                        <div style="display: flex; justify-content: center; gap: 50px; padding-left: 5vw; padding-right: 5vw; margin-top: -10px;">
+                            <span>{description[prediction][0]}</span>
+                            <span>{description[prediction][1]}</span>
+                            <span>{description[prediction][2]}</span>
+                        </div>
+                    </p>
+                ''', unsafe_allow_html=True)
+                st.markdown(f'''
+                    <p style="text-align: center; font-family: Arial, sans-serif; font-size: 18px; line-height: 1.2;">
+                        The cluster assigned to you is defined by: <br>
+                        <div style="display: flex; justify-content: center; gap: 50px; padding-left: 5vw; padding-right: 5vw; margin-top: -10px;">
+                            <span>{cluster_chars[prediction][0]}</span>
+                            <span>{cluster_chars[prediction][1]}</span>
+                            <span>{cluster_chars[prediction][2]}</span>
+                        </div>
+                    </p>
+                ''', unsafe_allow_html=True)
                 cluster_img_path = f"images/cluster_{prediction}.png"
                 st.write(f'''
                     <div style="text-align: center;">
@@ -124,8 +163,8 @@ def send_audio_to_api(audio_file_path, file_type):
 audio_file = st.file_uploader("Give me an audio file:",
                               type=["wav", "mp3", "flac"],
                               accept_multiple_files=False,
-                              help="The type of the file must be .wav, .mp3, or .flac",
-                              on_change=my_callback)
+                              help="The type of the file must be .wav, .mp3, or .flac"
+                              )
 
 
 # If an audio file is uploaded
@@ -157,10 +196,9 @@ st.markdown('''<br>
             <h4 style="text-align: center;">Record your Voice</h4>''',
             unsafe_allow_html=True)
 
-# Audio input with on_change callback
-recording = st.audio_input("Let me hear your voice:", key="recording", on_change=my_callback)
 
-
+# Recording input
+recording = st.audio_input("Let me hear your voice:", key="recording")
 
 if recording:
     st.write("Recording complete. Sending audio to the API...")
