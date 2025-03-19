@@ -15,7 +15,7 @@ def apply_custom_styles():
         <style>
         /* Change text color globally */
         * {
-            color: #ecd4cf !important;
+            color: #e38a78 !important;
         }
 
         /* Dark background for file uploader and audio uploader */
@@ -28,8 +28,8 @@ def apply_custom_styles():
         /* Style the buttons inside uploaders */
         div.stFileUploader button, div.stAudio button {
             background-color: #444 !important;
-            color: #ecd4cf !important;
-            border: 1px solid #ecd4cf !important;
+            color: #e38a78 !important;
+            border: 1px solid #e38a78 !important;
         }
         </style>
     """, unsafe_allow_html=True)
@@ -77,7 +77,7 @@ st.markdown("""
     <h1 style="text-align: center; color: #ecd4cf;">K-Means-Klang</h1>
     <h4 style="text-align: center; color: #ecd4cf;">
     Welcome to the K-means-Klang Project.
-    Give us a song, we'll give you its cluster.
+    Give us your favorite song, we'll tell you who you are!
     </h4><br>
 """, unsafe_allow_html=True)
 
@@ -87,14 +87,14 @@ def load_image(path):
     encoded = base64.b64encode(data).decode()
     return encoded
 
-animals = ['fiercy Falkon', 'groovy Dolphin', 'dreamy Panda', 'busy Squirrel', 'chill Coala', 'sophisticated Owl']
+animals = ['fierce Falkon', 'groovy Dolphin', 'dreamy Panda', 'jumpy Squirrel', 'chill Coala', 'sophisticated Owl']
 description = [
-    ['fast', 'fast', 'fast'],
-    ['fascinating', 'slow', 'extraordinary'],
-    ['experimental', 'experimental', 'experimental'],
-    ['funky', 'funky', 'funky'],
-    ['tricky', 'tricky', 'tricky'],
-    ['happy', 'happy', 'happy']
+    ['intense', 'rebellious', 'bold'],
+    ['rhythmic', 'energetic', 'vibrant'],
+    ['subdued', 'soft', 'relaxing'],
+    ['upbeat', 'conventional', 'optimistic'],
+    ['smooth', 'comforting', 'easygoing'],
+    ['reflective', 'sophisticated', 'calming']
 ]
 
 cluster_chars = [
@@ -138,21 +138,21 @@ def send_audio_to_api(audio_file_path, file_type):
                         </div>
                     </p>
                 ''', unsafe_allow_html=True)
-                st.markdown(f'''
+                cluster_img_path = f"images/cluster_{prediction}.png"
+                st.write(f'''
+                    <div style="text-align: center;">
+                        <img src="data:image/jpg;base64,{load_image(cluster_img_path)}" style="max-width: 500px; width: 100%; height: auto; display: inline-block;">
+                    </div>
+                ''', unsafe_allow_html=True)
+                st.markdown(f'''<br>
                     <p style="text-align: center; font-family: Arial, sans-serif; font-size: 18px; line-height: 1.2;">
-                        The cluster assigned to you is defined by: <br>
+                        The most dominant genres describing your song are: <br>
                         <div style="display: flex; justify-content: center; gap: 50px; padding-left: 5vw; padding-right: 5vw; margin-top: -10px;">
                             <span>{cluster_chars[prediction][0]}</span>
                             <span>{cluster_chars[prediction][1]}</span>
                             <span>{cluster_chars[prediction][2]}</span>
                         </div>
                     </p>
-                ''', unsafe_allow_html=True)
-                cluster_img_path = f"images/cluster_{prediction}.png"
-                st.write(f'''
-                    <div style="text-align: center;">
-                        <img src="data:image/jpg;base64,{load_image(cluster_img_path)}" style="max-width: 500px; width: 100%; height: auto; display: inline-block;">
-                    </div>
                 ''', unsafe_allow_html=True)
             except ValueError:
                 st.error("Error: Unable to parse response from the API.")
