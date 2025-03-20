@@ -11,6 +11,18 @@ def apply_custom_styles():
             color: #e38a78 !important;
         }
 
+        /* Sidebar background and text */
+        .stSidebar {
+            background-color: #000000 !important;
+            color: #e38a78 !important;
+        }
+
+        /* Header background and text */
+        header {
+            background-color: #000000 !important;
+            color: #e38a78 !important;
+        }
+
         /* Dark background for file uploader and audio uploader */
         div.stFileUploader, div.stAudio {
             background-color: #2a2a2a !important;
@@ -67,7 +79,7 @@ st.markdown("""
     <br>
 """, unsafe_allow_html=True)
 
-#Giphy 
+#Giphy
 # URL of your Giphy GIF
 giphy_url = "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExdWtoOGdjZzltOTEwczM1YjY5eXJmdTJrM3M0a3M3M2JwMnV1eGw2ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/awiM51Q3K2l4Joe4xS/giphy.gif"
 
@@ -82,18 +94,18 @@ st.markdown(f"""
 
 
 
-# Section 1 : Our Motivation. Our Why?  
+# Section 1 : Our Motivation. Our Why?
 st.markdown('''<br>
             <h2 style="text-align: center;">Our Project Motivation</h2>
             ''',
             unsafe_allow_html=True)
-st.markdown('''<p style="text-align: justify; font-family: Arial, sans-serif; font-size: 18px; line-height: 1.2;"> <b>Genres are not well-defined. And they don’t define what we hear.</b><br> 
-            Sometimes is easy to distinguish between Metal and classical. But what about all the types of sounds inbetween? Can we really confidently say what is Soft-Rock vs Reggae? Hip-hop vs Funk? Blues vs Jazz? 
-            Unfortunately, genre labels don't tell us enough about a sound. 
+st.markdown('''<p style="text-align: justify; font-family: Arial, sans-serif; font-size: 18px; line-height: 1.2;"> <b>Genres are not well-defined. And they don’t define what we hear.</b><br>
+            Sometimes is easy to distinguish between Metal and classical. But what about all the types of sounds inbetween? Can we really confidently say what is Soft-Rock vs Reggae? Hip-hop vs Funk? Blues vs Jazz?
+            Unfortunately, genre labels don't tell us enough about a sound.
             <br> <br>
-            <i>But, luckily, our brains do!</i> When we listen to music our brain registers certain patterns, frequencies, and features that evoke: <b><i> Emotions </b></i> 🤗 and <b><i> Memories </b></i> 🥳 
+            <i>But, luckily, our brains do!</i> When we listen to music our brain registers certain patterns, frequencies, and features that evoke: <b><i> Emotions </b></i> 🤗 and <b><i> Memories </b></i> 🥳
             </p><br>''', unsafe_allow_html=True)
- 
+
 
 def load_image(path):
     with open(path, 'rb') as f:
@@ -120,11 +132,11 @@ st.markdown('''<br>
             <h2 style="text-align: center;">Our Approach</h2>
             ''',
             unsafe_allow_html=True)
-st.markdown('''<p style="text-align: justify; font-family: Arial, sans-serif; font-size: 18px; line-height: 1.2;"><b>Unsatisfied with the status-quo, we set off to look beyond the label!</b> 🔎 We wanted to see what features are important for describing how particular songs and sounds might make us feel.  
+st.markdown('''<p style="text-align: justify; font-family: Arial, sans-serif; font-size: 18px; line-height: 1.2;"><b>Unsatisfied with the status-quo, we set off to look beyond the label!</b> 🔎 We wanted to see what features are important for describing how particular songs and sounds might make us feel.
             <br><br>
-            <b>Under the hood:</b> Using Data Analytics techniques (Python, Librosa), we took music samples from the GTZAN Dataset, removed the predefined genre labels, and broke the samples down into their musical building blocks. Then we used a <b>K-Means</b> unsupervised learning algorithm to cluster those sounds based on the relationship between the distinctive features (eg. a sound timbre, harmony, sharpness, brightness, etc). We found that various sound attributes helped to explain how certain sounds clustered together. For example: brightness of a sound, is it noisy or focused, is the timbre textured and complex or simple and clean? 
+            <b>Under the hood:</b> Using Data Analytics techniques (Python, Librosa), we took music samples from the GTZAN Dataset, removed the predefined genre labels, and broke the samples down into their musical building blocks. Then we used a <b>K-Means</b> unsupervised learning algorithm to cluster those sounds based on the relationship between the distinctive features (eg. a sound timbre, harmony, sharpness, brightness, etc). We found that various sound attributes helped to explain how certain sounds clustered together. For example: brightness of a sound, is it noisy or focused, is the timbre textured and complex or simple and clean?
             <br><br>
-            <b>Now for the fun part</b>: We can upload any audio file and discover meaning and insights behind the music. What is the song's personality? What are its characteristics? How is it related to the other sounds and genres?  
+            <b>Now for the fun part</b>: We can upload any audio file and discover meaning and insights behind the music. What is the song's personality? What are its characteristics? How is it related to the other sounds and genres?
             <br><br>
             Give it a try!  Upload your favorite song (or voice sample!🎤) and have fun!
             </p>
@@ -144,13 +156,13 @@ st.write(f'''
 st.markdown('''<br>
             <h4 style="text-align: center;">With Love and Vibes From the The K Means Klang Team🎶😍</h4>
             ''',
-            unsafe_allow_html=True)      
+            unsafe_allow_html=True)
 st.markdown('''<p style="text-align: Center; font-family: Arial, sans-serif; font-size: 18px; line-height: 1.2;">
              <b>Zahra Moktari</b> <br><b>Luisa Freytag</b> <br><b>Eleni Kartsiouka</b> <br><b>Tai Ford</b>
             <br><br>
             <b>Le Wagon Berlin - Batch #1936</b>
             </b>
-            </p>''', unsafe_allow_html=True)            
+            </p>''', unsafe_allow_html=True)
 
 
 

@@ -18,6 +18,18 @@ def apply_custom_styles():
             color: #e38a78 !important;
         }
 
+        /* Sidebar background and text */
+        .stSidebar {
+            background-color: #000000 !important;
+            color: #e38a78 !important;
+        }
+
+        /* Header background and text */
+        header {
+            background-color: #000000 !important;
+            color: #e38a78 !important;
+        }
+
         /* Dark background for file uploader and audio uploader */
         div.stFileUploader, div.stAudio {
             background-color: #2a2a2a !important;
