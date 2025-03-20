@@ -164,6 +164,14 @@ st.markdown('''<p style="text-align: Center; font-family: Arial, sans-serif; fon
             </b>
             </p>''', unsafe_allow_html=True)
 
+#Section 4: QR code
+QR_code = f"images/k-means-klang.png"
+
+st.write(f'''
+    <div style="text-align: center;">
+    <img src="data:image/jpg;base64,{load_image(QR_code)}" style="max-width: 200px; width: 100%; height: auto; display: inline-block;">
+    </div>
+    ''', unsafe_allow_html=True)
 
 
 # #Section 4: The future of music (Discovering the roots of music, )
