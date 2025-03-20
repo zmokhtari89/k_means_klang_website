@@ -92,7 +92,7 @@ with col1:
 
     st.markdown("<br>" * 3, unsafe_allow_html=True)
     audio2 = st.audio("audios/purple_haze.mp3", format="audio/mp3")
-    toggle2 = st.checkbox("Jimmy Henrix")
+    toggle2 = st.checkbox("Jimmy Hendrix")
     if toggle2:
         st.write("Rock")
     else:
