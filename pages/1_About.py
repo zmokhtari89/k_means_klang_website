@@ -75,7 +75,7 @@ st.markdown(
 
 # Website Header
 st.markdown("""
-    <h1 style="text-align: center; color: #ecd4cf;">Music is More Than Just a Genre</h1>
+    <h1 style="text-align: center; color: #ecd4cf;">Music is More Than Just a Genre!</h1>
     <br>
 """, unsafe_allow_html=True)
 
