@@ -1,8 +1,6 @@
-streamlit
-requests
-numpy
-pydub
+streamlit>=1.32.0
+requests>=2.31.0
+numpy>=1.26.0
+pydub>=0.25.1
+ffmpeg-python>=0.2.0
 
-# In order to upload non wav files, you will have to also run the following commands in your terminal
-# sudo apt update
-# sudo apt install ffmpeg

@@ -1,10 +1,7 @@
-try:
-    import audioop
-except ImportError:
-    import sys
-    import subprocess
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "--upgrade", "pip"])
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "audioop"])
+import os
+# Configure pydub to use system ffmpeg
+os.environ["PATH"] += os.pathsep + "/usr/bin/ffmpeg"
+
 import streamlit as st
 import requests
 import io
