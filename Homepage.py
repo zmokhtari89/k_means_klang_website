@@ -1,3 +1,10 @@
+try:
+    import audioop
+except ImportError:
+    import sys
+    import subprocess
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "--upgrade", "pip"])
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "audioop"])
 import streamlit as st
 import requests
 import io
